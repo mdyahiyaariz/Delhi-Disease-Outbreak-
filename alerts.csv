@@ -1,0 +1,1 @@
+cluster_id,disease,time_window,centroid_lat,centroid_lon,case_count,observed,expected,llr,is_anomaly,z_score

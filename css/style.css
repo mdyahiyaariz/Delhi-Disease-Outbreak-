@@ -1,0 +1,126 @@
+:root {
+  --dengue:  #E85D30;
+  --cholera: #2B7FD4;
+  --typhoid: #16A37A;
+  --anomaly: #E8253A;
+  --bg:      #0B0E14;
+  --panel:   #111520;
+  --border:  rgba(255,255,255,0.07);
+  --text:    #C8D0E0;
+  --muted:   #5A6480;
+  --accent:  #3B82F6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0; height: 52px; z-index: 1000;
+  background: var(--panel); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+}
+.logo {
+  font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
+  color: #fff; display: flex; align-items: center; gap: 10px; letter-spacing: 0.06em;
+}
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--anomaly); animation: blink 1.8s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+.hstats { display: flex; gap: 24px; }
+.hstat-val { font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 600; color: #fff; line-height: 1; }
+.hstat-lbl { font-size: 10px; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 2px; }
+
+/* SIDEBAR */
+aside {
+  position: fixed; top: 52px; left: 0; bottom: 0; width: 264px; z-index: 900;
+  background: var(--panel); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow-y: auto;
+}
+.sec { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+.sec-title {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+}
+
+/* radio pills */
+.pills { display: flex; gap: 4px; flex-wrap: wrap; }
+.pill {
+  padding: 5px 9px; font-size: 11px; border: 1px solid var(--border);
+  border-radius: 4px; cursor: pointer; background: transparent; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace; transition: all 0.15s; letter-spacing: 0.04em;
+}
+.pill:hover { background: rgba(255,255,255,0.04); }
+.pill.on { background: rgba(59,130,246,0.15); border-color: var(--accent); color: #fff; }
+
+/* disease filter buttons */
+.dis-btn {
+  display: flex; align-items: center; gap: 9px; width: 100%;
+  padding: 7px 9px; background: transparent; border: 1px solid var(--border);
+  border-radius: 6px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; color: var(--text); margin-bottom: 5px; transition: all 0.15s;
+}
+.dis-btn:hover { background: rgba(255,255,255,0.04); }
+.dis-btn.on { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
+.dis-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.dis-cnt { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+/* sliders */
+.ctrl { margin-bottom: 11px; }
+.ctrl-lbl { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+.ctrl-lbl span:last-child { font-family: 'JetBrains Mono', monospace; color: var(--text); }
+input[type=range] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+
+/* checkboxes */
+.chk-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); cursor: pointer; margin-bottom: 6px; }
+
+/* alerts */
+.alert-item {
+  padding: 8px 10px; border-radius: 6px; margin-bottom: 5px;
+  border-left: 3px solid var(--anomaly); background: rgba(232,37,58,0.08);
+  cursor: pointer; transition: background 0.15s; font-size: 12px;
+}
+.alert-item:hover { background: rgba(232,37,58,0.16); }
+.al-title { font-weight: 500; color: #fff; margin-bottom: 2px; }
+.al-meta { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+
+/* MAP */
+#map { position: fixed; top: 52px; left: 264px; right: 0; bottom: 0; z-index: 1; }
+
+/* override leaflet popup */
+.leaflet-popup-content-wrapper {
+  background: rgba(11,14,20,0.97) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 8px !important; color: var(--text) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7) !important;
+  backdrop-filter: blur(8px);
+}
+.leaflet-popup-tip { background: rgba(11,14,20,0.97) !important; }
+.leaflet-popup-content { margin: 10px 14px !important; font-family: 'DM Sans', sans-serif !important; font-size: 13px !important; line-height: 1.6; }
+.pop-title { font-weight: 600; font-size: 14px; color: #fff; margin-bottom: 6px; }
+.pop-row { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 12px; }
+.pop-row span:last-child { color: var(--text); font-family: 'JetBrains Mono', monospace; }
+.pop-anom { color: var(--anomaly); font-size: 11px; font-weight: 600; margin-top: 6px; letter-spacing: 0.04em; }
+
+/* legend */
+#legend {
+  position: fixed; bottom: 16px; right: 16px; z-index: 1000;
+  background: rgba(11,14,20,0.92); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px; font-size: 11px; color: var(--muted);
+  backdrop-filter: blur(8px);
+}
+#legend div { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+#legend div:last-child { margin-bottom: 0; }
+.leg-sq { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+/* tooltip */
+#tt {
+  position: fixed; background: rgba(11,14,20,0.97); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 10px 13px; font-size: 12px; pointer-events: none;
+  display: none; z-index: 9999; max-width: 200px; line-height: 1.6;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+}
+.tt-title { font-weight: 600; color: #fff; margin-bottom: 5px; font-size: 13px; }
+.tt-row { display: flex; justify-content: space-between; gap: 14px; color: var(--muted); }
+.tt-row span:last-child { font-family: 'JetBrains Mono', monospace; color: var(--text); }
+.tt-anom { color: var(--anomaly); font-size: 11px; margin-top: 5px; font-weight: 600; }
+
+@keyframes anomPulse { 0%,100%{opacity:1} 50%{opacity:0.45} }

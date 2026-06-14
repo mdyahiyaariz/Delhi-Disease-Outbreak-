@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# MLflow
+mlruns/
+mlflow.db
+
+# Generated outputs
+output/
+outputs/
+
+# OS
+.DS_Store
+Thumbs.db
